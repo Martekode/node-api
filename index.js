@@ -5,7 +5,7 @@ import usersRoutes from './Routes/users.js';
 //setyup our app to xpress
 const app = express();
 //declaring port for our app
-const PORT = 5000;
+const PORT = 8080;
 
 // format we'll use is json
 app.use(bodyParser.json());
