@@ -1,4 +1,4 @@
-import express, { request } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import usersRoutes from './Routes/users.js';
 
