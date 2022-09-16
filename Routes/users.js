@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 
 // Mock database 
-const users = [
+let users = [
     {
         firstName: "John",
         lasttName: "Doe",
@@ -28,11 +28,29 @@ router.get('/', (req, res) => {
 
 // post route
 // added uuid to handle a unique id
+// this uses req.params to get the value
 router.post('/', (req, res) => {
     const user = req.body;
     users.push({...user, id: uuidv4()});
     res.send(`User with the name ${user.firstName} added to the database`);
-
 });
+
+// route for specific user by id 
+router.get('/:id', (req, res)=>{
+    const { id }= req.params;
+
+    const foundUser = users.find((user)=> user.id == id);
+
+    res.send(foundUser);
+});
+
+// delete route to delete from id
+router.delete('/:id', (req, res) => {
+    const { id }= req.params;
+
+    users = users.filter((user)=> user.id != id);
+
+    res.send(`User with the id ${id} was deleted from the database!`);
+})
 
 export default router;
